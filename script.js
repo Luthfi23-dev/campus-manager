@@ -1,15 +1,24 @@
-// Wait for the page to load
-document.addEventListener("DOMContentLoaded", () => {
-    // Start button
-    const startGameButton = document.getElementById('start-game-btn');
-    
-    startGameButton.addEventListener('click', () => {
-        // Show a welcome message and game dashboard when the game starts
-        const universityInfo = document.getElementById('university-info');
-        universityInfo.innerHTML = `<h3>Welcome to your new University!</h3><p>Let's begin building your campus.</p>`;
-        
-        // Hide the "Create University" section
-        document.getElementById('create-university').style.display = 'none';
-    });
+document.getElementById("start-new-game-btn").addEventListener("click", function() {
+    // Logic for starting a new game
+    // For now, let's display a message or redirect to a new page
+    alert("Starting a new game...");
+
+    // Store some basic info for the game (we will expand this later)
+    localStorage.setItem("gameStarted", true);
+    localStorage.setItem("universityName", "My New University");
+
+    // Redirect to the next page or update UI with game info
+    window.location.href = "game.html"; // You can create a new page for the game
 });
 
+document.getElementById("continue-game-btn").addEventListener("click", function() {
+    // Logic to continue an existing game
+    const gameStarted = localStorage.getItem("gameStarted");
+
+    if (gameStarted) {
+        alert("Continuing the game...");
+        window.location.href = "game.html"; // Redirect to the game page
+    } else {
+        alert("No saved game found. Start a new game.");
+    }
+});
